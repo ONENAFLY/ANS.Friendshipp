@@ -1,0 +1,2070 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>บันทึกความทรงจำของ ANAS 💙</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sky1: #e0f4ff;
+  --sky2: #b3e0ff;
+  --sky3: #80c9f5;
+  --blue: #2196F3;
+  --blue-dark: #1565C0;
+  --blue-light: #64B5F6;
+  --blue-mid: #42A5F5;
+  --cloud: #ffffff;
+  --sun: #FFD54F;
+  --green: #A5D6A7;
+  --green-dark: #66BB6A;
+  --paper: #FAFBFF;
+  --ink: #1a2744;
+  --ink-light: #3d5a8a;
+  --shadow: rgba(33,150,243,0.18);
+  --radius: 18px;
+  --font-th: 'Kanit', sans-serif;
+  --font-body: 'Sarabun', sans-serif;
+  --font-hand: 'Dancing Script', cursive;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(170deg, #c9e9ff 0%, #e8f5ff 40%, #d4f0e0 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--ink);
+}
+
+/* =========== CLOUD ANIMATIONS =========== */
+.sky-bg {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 0; overflow: hidden;
+}
+.cloud {
+  position: absolute;
+  background: white;
+  border-radius: 50px;
+  opacity: 0.7;
+  filter: blur(2px);
+  animation: floatCloud linear infinite;
+}
+.cloud::before, .cloud::after {
+  content: '';
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+}
+.cloud-1 { width: 120px; height: 40px; top: 8%; animation-duration: 35s; animation-delay: 0s; }
+.cloud-1::before { width: 60px; height: 60px; top: -30px; left: 15px; }
+.cloud-1::after { width: 45px; height: 45px; top: -20px; left: 55px; }
+.cloud-2 { width: 90px; height: 30px; top: 18%; animation-duration: 50s; animation-delay: -15s; opacity: 0.5; }
+.cloud-2::before { width: 45px; height: 45px; top: -22px; left: 10px; }
+.cloud-2::after { width: 35px; height: 35px; top: -15px; left: 40px; }
+.cloud-3 { width: 160px; height: 50px; top: 5%; animation-duration: 45s; animation-delay: -8s; }
+.cloud-3::before { width: 80px; height: 80px; top: -40px; left: 20px; }
+.cloud-3::after { width: 60px; height: 60px; top: -30px; left: 75px; }
+.cloud-4 { width: 100px; height: 35px; top: 28%; animation-duration: 60s; animation-delay: -25s; opacity: 0.4; }
+.cloud-4::before { width: 50px; height: 50px; top: -25px; left: 12px; }
+.cloud-4::after { width: 40px; height: 40px; top: -18px; left: 48px; }
+@keyframes floatCloud {
+  from { transform: translateX(-250px); }
+  to { transform: translateX(calc(100vw + 250px)); }
+}
+.sun {
+  position: fixed; top: 30px; right: 60px;
+  width: 70px; height: 70px;
+  background: radial-gradient(circle, #FFE57F 40%, #FFD54F 70%, transparent 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 40px #FFD54F88, 0 0 80px #FFD54F44;
+  animation: sunPulse 4s ease-in-out infinite;
+  z-index: 1; pointer-events: none;
+}
+@keyframes sunPulse {
+  0%, 100% { box-shadow: 0 0 40px #FFD54F88, 0 0 80px #FFD54F44; transform: scale(1); }
+  50% { box-shadow: 0 0 60px #FFD54Faa, 0 0 120px #FFD54F66; transform: scale(1.08); }
+}
+.sun-ray {
+  position: fixed; top: 0; right: 0; width: 200px; height: 200px;
+  background: conic-gradient(transparent 0deg, #FFD54F11 10deg, transparent 20deg);
+  animation: sunRotate 20s linear infinite; z-index: 1; pointer-events: none;
+}
+@keyframes sunRotate { to { transform: rotate(360deg); } }
+
+/* =========== PAGE SYSTEM =========== */
+.page { display: none; position: relative; z-index: 10; min-height: 100vh; }
+.page.active { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+/* =========== LANDING PAGE =========== */
+#page-landing {
+  background: transparent;
+  padding: 20px;
+}
+.landing-content {
+  display: flex; flex-direction: column; align-items: center; gap: 30px;
+  animation: fadeInUp 1s ease-out;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.notebook-3d {
+  width: 260px; height: 320px;
+  perspective: 1000px;
+  cursor: pointer;
+  animation: floatBook 4s ease-in-out infinite;
+}
+@keyframes floatBook {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
+}
+.notebook-inner {
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateY(-15deg) rotateX(5deg);
+  transition: transform 0.5s ease;
+  position: relative;
+}
+.notebook-3d:hover .notebook-inner {
+  transform: rotateY(-25deg) rotateX(8deg) scale(1.05);
+}
+.notebook-cover {
+  position: absolute; width: 100%; height: 100%;
+  background: linear-gradient(135deg, #1565C0 0%, #1976D2 40%, #2196F3 70%, #42A5F5 100%);
+  border-radius: 8px 18px 18px 8px;
+  box-shadow: -8px 8px 30px rgba(21,101,192,0.6), -2px 2px 8px rgba(21,101,192,0.4), 6px 6px 20px rgba(0,0,0,0.3);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px;
+  padding: 30px 20px;
+  backface-visibility: hidden;
+}
+.notebook-spine {
+  position: absolute; left: -18px; top: 0;
+  width: 22px; height: 100%;
+  background: linear-gradient(90deg, #0D47A1, #1565C0);
+  border-radius: 4px 0 0 4px;
+  box-shadow: -4px 4px 10px rgba(0,0,0,0.4);
+}
+.notebook-rings {
+  position: absolute; left: -12px; top: 0;
+  width: 12px; height: 100%;
+  display: flex; flex-direction: column;
+  justify-content: space-evenly; align-items: center;
+  z-index: 5;
+}
+.ring {
+  width: 14px; height: 14px;
+  border: 3px solid #90CAF9;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.book-title {
+  font-family: var(--font-hand);
+  font-size: 2.8rem;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  letter-spacing: 2px;
+}
+.book-subtitle {
+  font-family: var(--font-th);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.book-deco {
+  display: flex; gap: 8px; margin-top: 10px;
+}
+.book-star {
+  width: 8px; height: 8px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  animation: starBlink 2s ease-in-out infinite;
+}
+.book-star:nth-child(2) { animation-delay: 0.3s; }
+.book-star:nth-child(3) { animation-delay: 0.6s; }
+@keyframes starBlink {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+.landing-title {
+  font-family: var(--font-th);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--blue-dark);
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(255,255,255,0.8);
+}
+.landing-sub {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink-light);
+  text-align: center;
+  font-weight: 300;
+}
+
+/* =========== BUTTONS =========== */
+.btn {
+  font-family: var(--font-th);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 13px 40px;
+  border: none; cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  display: inline-flex; align-items: center; gap: 8px;
+  text-decoration: none;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #1976D2, #2196F3, #42A5F5);
+  color: white;
+  box-shadow: 0 4px 20px rgba(33,150,243,0.5);
+}
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 30px rgba(33,150,243,0.6);
+}
+.btn-secondary {
+  background: white;
+  color: var(--blue-dark);
+  border: 2px solid var(--blue-light);
+  box-shadow: 0 2px 10px var(--shadow);
+}
+.btn-secondary:hover {
+  background: var(--sky1); transform: translateY(-2px);
+}
+.btn-danger {
+  background: linear-gradient(135deg, #e53935, #ef5350);
+  color: white;
+  box-shadow: 0 4px 15px rgba(229,57,53,0.4);
+}
+.btn-danger:hover { transform: translateY(-2px); }
+.btn-sm { padding: 8px 20px; font-size: 0.85rem; }
+.btn-xs { padding: 5px 14px; font-size: 0.78rem; }
+
+/* =========== CARD =========== */
+.card {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 40px var(--shadow), 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid rgba(255,255,255,0.8);
+  padding: 30px;
+}
+
+/* =========== LOGIN PAGE =========== */
+#page-login {
+  padding: 20px;
+}
+.login-card {
+  width: min(420px, 100%);
+  text-align: center;
+}
+.login-icon {
+  font-size: 3rem; margin-bottom: 10px;
+  animation: bounce 2s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.login-card h2 {
+  font-family: var(--font-th); font-size: 1.4rem;
+  color: var(--blue-dark); margin-bottom: 6px;
+}
+.login-card p { color: var(--ink-light); font-size: 0.9rem; margin-bottom: 24px; }
+.input-group { text-align: left; margin-bottom: 18px; }
+.input-group label {
+  display: block; font-family: var(--font-th); font-size: 0.88rem;
+  color: var(--ink-light); margin-bottom: 6px; font-weight: 500;
+}
+.input-group input, .input-group textarea, .input-group select {
+  width: 100%;
+  padding: 13px 18px;
+  border: 2px solid #e3f2fd;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink);
+  background: #f8fbff;
+  transition: all 0.2s;
+  outline: none;
+}
+.input-group input:focus, .input-group textarea:focus {
+  border-color: var(--blue);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(33,150,243,0.12);
+}
+.error-msg {
+  color: #e53935; font-size: 0.82rem;
+  margin-top: 6px; display: none;
+}
+.error-msg.show { display: block; }
+.success-msg {
+  color: #43a047; font-size: 0.82rem;
+  margin-top: 6px; display: none;
+}
+.success-msg.show { display: block; }
+
+/* =========== QUIZ PAGE =========== */
+#page-quiz { padding: 20px; }
+.quiz-card {
+  width: min(500px, 100%);
+}
+.quiz-header {
+  text-align: center; margin-bottom: 24px;
+}
+.quiz-header h2 {
+  font-family: var(--font-th); font-size: 1.3rem;
+  color: var(--blue-dark);
+}
+.progress-bar-wrap {
+  background: #e3f2fd; border-radius: 10px;
+  height: 10px; margin: 12px 0 6px; overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), #42A5F5);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+.quiz-q-num { color: var(--ink-light); font-size: 0.85rem; }
+.quiz-question {
+  font-family: var(--font-th); font-size: 1.15rem;
+  color: var(--ink); text-align: center;
+  margin-bottom: 22px; font-weight: 500;
+  line-height: 1.5;
+}
+.quiz-options { display: flex; flex-direction: column; gap: 12px; }
+.quiz-option {
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #f0f8ff, #e8f4fd);
+  border: 2px solid #bbdefb;
+  border-radius: 14px;
+  font-family: var(--font-th);
+  font-size: 1rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.25s;
+  text-align: center;
+  font-weight: 400;
+}
+.quiz-option:hover {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+  border-color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px var(--shadow);
+}
+.quiz-option.correct {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  border-color: #66BB6A; color: #2e7d32;
+}
+.quiz-option.wrong {
+  background: linear-gradient(135deg, #ffebee, #ffcdd2);
+  border-color: #EF9A9A; color: #c62828;
+}
+.quiz-option.reveal {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  border-color: #66BB6A; color: #2e7d32;
+}
+
+/* =========== QUIZ RESULT =========== */
+.quiz-result-card {
+  width: min(450px, 100%);
+  text-align: center;
+}
+.score-circle {
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1976D2, #42A5F5);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 8px 30px rgba(33,150,243,0.4);
+  animation: scaleIn 0.5s ease-out;
+}
+@keyframes scaleIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.score-num {
+  font-family: var(--font-th); font-size: 2.8rem;
+  font-weight: 700; color: white; line-height: 1;
+}
+.score-label { font-size: 0.75rem; color: rgba(255,255,255,0.8); }
+.score-msg {
+  font-family: var(--font-th); font-size: 1.1rem;
+  color: var(--blue-dark); margin-bottom: 20px;
+}
+
+/* =========== MAIN APP =========== */
+#page-app { padding: 0; align-items: stretch; justify-content: flex-start; }
+.app-layout { display: flex; width: 100%; min-height: 100vh; }
+.sidebar {
+  width: 240px; min-height: 100vh;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(227,242,253,0.95) 100%);
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(33,150,243,0.15);
+  display: flex; flex-direction: column;
+  padding: 20px 0;
+  position: fixed; left: 0; top: 0; bottom: 0; z-index: 100;
+  box-shadow: 2px 0 20px rgba(33,150,243,0.1);
+}
+.sidebar-brand {
+  padding: 10px 20px 20px;
+  border-bottom: 1px solid rgba(33,150,243,0.12);
+  margin-bottom: 10px;
+}
+.sidebar-brand h1 {
+  font-family: var(--font-th); font-size: 0.95rem;
+  font-weight: 600; color: var(--blue-dark); line-height: 1.4;
+}
+.sidebar-user {
+  font-size: 0.78rem; color: var(--ink-light);
+  margin-top: 4px; font-family: var(--font-body);
+}
+.nav-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 20px;
+  font-family: var(--font-th); font-size: 0.92rem;
+  color: var(--ink-light);
+  cursor: pointer;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+.nav-item:hover { background: rgba(33,150,243,0.08); color: var(--blue); }
+.nav-item.active {
+  background: rgba(33,150,243,0.12);
+  color: var(--blue-dark); font-weight: 600;
+  border-left-color: var(--blue);
+}
+.nav-icon { font-size: 1.1rem; width: 22px; text-align: center; }
+.sidebar-footer {
+  margin-top: auto;
+  padding: 16px 20px;
+  border-top: 1px solid rgba(33,150,243,0.12);
+}
+.main-content {
+  margin-left: 240px; flex: 1;
+  padding: 30px;
+  min-height: 100vh;
+}
+
+/* =========== DIARY PAGE =========== */
+.diary-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px; flex-wrap: wrap; gap: 12px;
+}
+.diary-header h2 {
+  font-family: var(--font-th); font-size: 1.5rem;
+  color: var(--blue-dark);
+}
+.diary-list { display: flex; flex-direction: column; gap: 14px; }
+.diary-entry-card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  padding: 18px 22px;
+  border: 1px solid rgba(33,150,243,0.18);
+  box-shadow: 0 3px 15px rgba(33,150,243,0.08);
+  display: flex; align-items: center; gap: 16px;
+  transition: all 0.25s;
+}
+.diary-entry-card:hover {
+  box-shadow: 0 6px 25px rgba(33,150,243,0.15);
+  transform: translateY(-1px);
+}
+.entry-avatar {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: linear-gradient(135deg, #1976D2, #42A5F5);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-th); font-size: 1.1rem;
+  font-weight: 600; color: white; flex-shrink: 0;
+}
+.entry-info { flex: 1; min-width: 0; }
+.entry-author {
+  font-family: var(--font-th); font-size: 0.95rem;
+  font-weight: 600; color: var(--blue-dark);
+}
+.entry-preview {
+  font-size: 0.82rem; color: var(--ink-light);
+  margin-top: 2px; font-style: italic;
+}
+.entry-date {
+  font-size: 0.75rem; color: #90a4ae;
+  margin-top: 3px;
+}
+.entry-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.locked-badge {
+  background: #fff3e0;
+  color: #f57c00;
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-family: var(--font-th);
+  border: 1px solid #ffcc80;
+}
+
+/* =========== WRITE DIARY =========== */
+.diary-form-wrap {
+  background: rgba(255,255,255,0.92);
+  border-radius: 20px;
+  border: 1px solid rgba(33,150,243,0.2);
+  box-shadow: 0 8px 40px rgba(33,150,243,0.12);
+  padding: 28px;
+  margin-bottom: 24px;
+  animation: slideDown 0.4s ease-out;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.diary-form-wrap h3 {
+  font-family: var(--font-th); font-size: 1.2rem;
+  color: var(--blue-dark); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 8px;
+}
+.tab-bar {
+  display: flex; gap: 0;
+  background: #e3f2fd;
+  border-radius: 12px;
+  padding: 4px; margin-bottom: 18px;
+}
+.tab-btn {
+  flex: 1; padding: 9px;
+  border: none; background: transparent;
+  font-family: var(--font-th); font-size: 0.85rem;
+  color: var(--ink-light); cursor: pointer;
+  border-radius: 10px; transition: all 0.2s;
+}
+.tab-btn.active {
+  background: white; color: var(--blue-dark);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(33,150,243,0.15);
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.diary-textarea {
+  width: 100%; min-height: 130px;
+  padding: 15px; border: 2px solid #e3f2fd;
+  border-radius: 14px; font-family: var(--font-body);
+  font-size: 0.95rem; line-height: 1.7;
+  resize: vertical; background: #fafbff;
+  color: var(--ink); outline: none; transition: all 0.2s;
+  font-style: italic;
+}
+.diary-textarea:focus {
+  border-color: var(--blue); background: white;
+  box-shadow: 0 0 0 4px rgba(33,150,243,0.1);
+}
+.image-upload-area {
+  border: 2px dashed #bbdefb;
+  border-radius: 14px; padding: 30px;
+  text-align: center; cursor: pointer;
+  transition: all 0.2s; background: #f8fbff;
+}
+.image-upload-area:hover { border-color: var(--blue); background: #e3f2fd; }
+.image-preview {
+  max-width: 100%; max-height: 300px;
+  border-radius: 10px; margin-top: 10px;
+  display: none;
+}
+
+/* =========== CANVAS DRAWING =========== */
+#draw-canvas {
+  border: 2px solid #bbdefb;
+  border-radius: 14px;
+  cursor: crosshair;
+  display: block;
+  background: white;
+  touch-action: none;
+  max-width: 100%;
+}
+.canvas-toolbar {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 12px; align-items: center;
+}
+.tool-btn {
+  padding: 7px 14px;
+  border: 2px solid #e3f2fd;
+  border-radius: 10px; background: white;
+  font-size: 0.8rem; font-family: var(--font-th);
+  cursor: pointer; transition: all 0.2s;
+  color: var(--ink-light);
+}
+.tool-btn:hover { border-color: var(--blue); color: var(--blue); }
+.tool-btn.active {
+  background: var(--blue); border-color: var(--blue);
+  color: white; font-weight: 600;
+}
+.tool-separator { width: 1px; height: 28px; background: #e3f2fd; margin: 0 4px; }
+.size-slider {
+  -webkitappearance: none; width: 80px; height: 6px;
+  background: #e3f2fd; border-radius: 3px; outline: none;
+}
+.size-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 16px; height: 16px;
+  background: var(--blue); border-radius: 50%; cursor: pointer;
+}
+.color-picker-wrap { display: flex; align-items: center; gap: 6px; }
+.color-swatch {
+  width: 26px; height: 26px; border-radius: 6px;
+  cursor: pointer; border: 2px solid transparent;
+  transition: transform 0.2s;
+}
+.color-swatch:hover { transform: scale(1.2); }
+.color-swatch.active { border-color: var(--ink); transform: scale(1.2); }
+.color-input { width: 32px; height: 32px; border: none; padding: 0; cursor: pointer; border-radius: 6px; }
+
+/* =========== MODAL =========== */
+.modal-overlay {
+  display: none; position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(21,101,192,0.3);
+  backdrop-filter: blur(5px);
+  z-index: 1000; align-items: center; justify-content: center;
+}
+.modal-overlay.show { display: flex; }
+.modal-box {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  width: min(520px, 95%);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(21,101,192,0.25);
+  animation: modalPop 0.3s ease-out;
+  position: relative;
+}
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+.modal-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 32px; height: 32px;
+  border: none; background: #e3f2fd;
+  border-radius: 50%; cursor: pointer;
+  font-size: 1rem; color: var(--ink-light);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.modal-close:hover { background: #ffcdd2; color: #c62828; }
+.modal-title {
+  font-family: var(--font-th); font-size: 1.25rem;
+  color: var(--blue-dark); margin-bottom: 20px;
+}
+
+/* =========== PROFILE PAGE =========== */
+.profile-card { max-width: 450px; }
+.profile-avatar-big {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1565C0, #42A5F5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.2rem; color: white; font-family: var(--font-th);
+  font-weight: 700; margin: 0 auto 16px;
+  box-shadow: 0 6px 20px rgba(33,150,243,0.4);
+}
+.profile-info-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 0; border-bottom: 1px solid #e3f2fd;
+  font-family: var(--font-body); font-size: 0.92rem; color: var(--ink-light);
+}
+.profile-info-row strong {
+  font-family: var(--font-th); color: var(--ink); font-weight: 600;
+}
+
+/* =========== ADMIN PAGE =========== */
+.admin-card { max-width: 800px; width: 100%; }
+.admin-section-title {
+  font-family: var(--font-th); font-size: 1.1rem;
+  color: var(--blue-dark); margin: 20px 0 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.data-table {
+  width: 100%; border-collapse: collapse;
+  font-family: var(--font-body); font-size: 0.85rem;
+}
+.data-table th {
+  background: linear-gradient(135deg, #1976D2, #2196F3);
+  color: white; padding: 10px 14px;
+  text-align: left; font-family: var(--font-th); font-weight: 500;
+}
+.data-table th:first-child { border-radius: 10px 0 0 0; }
+.data-table th:last-child { border-radius: 0 10px 0 0; }
+.data-table td {
+  padding: 10px 14px; border-bottom: 1px solid #e3f2fd;
+  color: var(--ink); vertical-align: top;
+}
+.data-table tr:hover td { background: #f0f7ff; }
+.quiz-answers-detail {
+  font-size: 0.8rem; color: var(--ink-light);
+  margin-top: 4px; line-height: 1.8;
+}
+.correct-ans { color: #2e7d32; font-weight: 600; }
+.wrong-ans { color: #c62828; }
+
+/* =========== TOAST =========== */
+.toast-container {
+  position: fixed; bottom: 24px; right: 24px;
+  z-index: 9999; display: flex; flex-direction: column; gap: 8px;
+}
+.toast {
+  padding: 12px 20px;
+  background: rgba(21,101,192,0.95);
+  color: white; border-radius: 12px;
+  font-family: var(--font-th); font-size: 0.9rem;
+  box-shadow: 0 4px 20px rgba(21,101,192,0.4);
+  animation: toastIn 0.3s ease-out;
+  max-width: 300px;
+}
+.toast.success { background: rgba(46,125,50,0.95); }
+.toast.error { background: rgba(198,40,40,0.95); }
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* =========== ADMIN LOGIN =========== */
+.admin-entry {
+  position: fixed; bottom: 20px; left: 20px; z-index: 200;
+}
+.admin-lock-btn {
+  width: 42px; height: 42px;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(33,150,243,0.2);
+  border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.admin-lock-btn:hover { background: white; transform: scale(1.1); }
+
+/* =========== NOTEBOOK LINES =========== */
+.notebook-lines {
+  background-image: repeating-linear-gradient(
+    transparent, transparent 27px, #e3f2fd 27px, #e3f2fd 28px
+  );
+}
+
+/* =========== IMAGE VIEW =========== */
+.view-image { max-width: 100%; border-radius: 12px; margin-top: 10px; }
+.view-drawing { max-width: 100%; border-radius: 12px; margin-top: 10px; }
+
+/* =========== RESPONSIVE =========== */
+@media (max-width: 700px) {
+  .sidebar { width: 100%; height: auto; min-height: unset; position: static; flex-direction: row; flex-wrap: wrap; padding: 10px; }
+  .sidebar-brand { flex: 1; padding: 8px; }
+  .nav-item { padding: 8px 12px; font-size: 0.8rem; }
+  .main-content { margin-left: 0; padding: 16px; }
+  .app-layout { flex-direction: column; }
+  #page-app { align-items: stretch; }
+}
+
+/* scroll */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f0f7ff; }
+::-webkit-scrollbar-thumb { background: #90CAF9; border-radius: 3px; }
+
+/* Loading */
+.loading-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(194,228,255,0.85);
+  backdrop-filter: blur(6px);
+  z-index: 9000;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 16px;
+}
+.loading-spinner {
+  width: 50px; height: 50px;
+  border: 5px solid rgba(33,150,243,0.2);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { font-family: var(--font-th); color: var(--blue-dark); font-size: 1rem; }
+
+.section-hidden { display: none !important; }
+.diary-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.diary-tab-btn {
+  padding: 8px 18px; border: 2px solid #e3f2fd;
+  border-radius: 20px; background: white;
+  font-family: var(--font-th); font-size: 0.85rem;
+  cursor: pointer; color: var(--ink-light); transition: all 0.2s;
+}
+.diary-tab-btn.active { background: var(--blue); border-color: var(--blue); color: white; }
+</style>
+</head>
+<body>
+
+<!-- Sky Background -->
+<div class="sky-bg">
+  <div class="cloud cloud-1" style="left:-200px"></div>
+  <div class="cloud cloud-2" style="left:-100px"></div>
+  <div class="cloud cloud-3" style="left:-300px"></div>
+  <div class="cloud cloud-4" style="left:-150px"></div>
+</div>
+<div class="sun"></div>
+<div class="sun-ray"></div>
+
+<!-- Loading -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">กำลังโหลด...</div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Admin Entry Button -->
+<div class="admin-entry">
+  <button class="admin-lock-btn" onclick="openAdminLogin()" title="Admin">🔐</button>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE: LANDING -->
+<!-- ============================================================ -->
+<div class="page active" id="page-landing">
+  <div class="landing-content">
+    <div class="notebook-3d" onclick="goToLogin()">
+      <div class="notebook-inner">
+        <div class="notebook-spine"></div>
+        <div class="notebook-rings">
+          <div class="ring"></div><div class="ring"></div>
+          <div class="ring"></div><div class="ring"></div>
+          <div class="ring"></div><div class="ring"></div>
+        </div>
+        <div class="notebook-cover">
+          <div class="book-title">Friendship</div>
+          <div class="book-subtitle">บันทึกความทรงจำ</div>
+          <div class="book-subtitle" style="font-size:0.75rem;opacity:0.7">ของ ANAS 💙</div>
+          <div class="book-deco">
+            <div class="book-star"></div>
+            <div class="book-star"></div>
+            <div class="book-star"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="landing-title">💙 บันทึกความทรงจำของ ANAS</div>
+      <div class="landing-sub">เรื่องเล่าระหว่างเรา</div>
+    </div>
+    <button class="btn btn-primary" onclick="goToLogin()" style="font-size:1.1rem;padding:15px 50px;">
+      ✨ ENTER
+    </button>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE: LOGIN -->
+<!-- ============================================================ -->
+<div class="page" id="page-login">
+  <div class="card login-card">
+    <div class="login-icon">📖</div>
+    <h2>ยินดีต้อนรับ!</h2>
+    <p>กรอกชื่อของคุณเพื่อเข้าสู่สมุดบันทึก</p>
+    <div class="input-group">
+      <label>ชื่อของคุณ (Username)</label>
+      <input type="text" id="usernameInput" placeholder="กรอกชื่อที่ต้องการใช้..." maxlength="30"
+        onkeydown="if(event.key==='Enter') doLogin()">
+      <div class="error-msg" id="loginError">ชื่อนี้มีคนใช้แล้ว กรุณาเลือกชื่ออื่น</div>
+      <div class="error-msg" id="loginErrorEmpty">กรุณากรอกชื่อก่อนนะ 😊</div>
+    </div>
+    <button class="btn btn-primary" style="width:100%;" onclick="doLogin()">เข้าสู่สมุด ✨</button>
+    <div style="margin-top:14px;font-size:0.8rem;color:var(--ink-light);">
+      💡 ระบบจะจดจำคุณโดยอัตโนมัติ
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE: QUIZ -->
+<!-- ============================================================ -->
+<div class="page" id="page-quiz">
+  <div class="card quiz-card">
+    <div class="quiz-header">
+      <div style="font-size:1.8rem;margin-bottom:6px;">🎯</div>
+      <h2>รู้จัก ANAS กันดีกว่า!</h2>
+      <p style="color:var(--ink-light);font-size:0.85rem;margin-top:4px;">ทายว่า ANAS ชอบอะไร?</p>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="quizProgressBar" style="width:0%"></div>
+      </div>
+      <div class="quiz-q-num" id="quizQNum">ข้อ 1 / 10</div>
+    </div>
+    <div id="quizQuestionText" class="quiz-question"></div>
+    <div class="quiz-options" id="quizOptions"></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE: QUIZ RESULT -->
+<!-- ============================================================ -->
+<div class="page" id="page-quiz-result">
+  <div class="card quiz-result-card">
+    <div class="score-circle">
+      <div class="score-num" id="finalScore">0/10</div>
+      <div class="score-label">คะแนน</div>
+    </div>
+    <h2 class="score-msg" id="scoreMsg"></h2>
+    <div id="quizReviewList" style="margin:16px 0;text-align:left;max-height:350px;overflow-y:auto;"></div>
+    <button class="btn btn-primary" onclick="goToApp()">ไปเขียนบันทึก 📝</button>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE: APP (Main) -->
+<!-- ============================================================ -->
+<div class="page" id="page-app">
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-brand">
+        <div style="font-size:1.3rem;margin-bottom:4px;">💙</div>
+        <h1>บันทึกความทรงจำ<br>ของ ANAS</h1>
+        <div class="sidebar-user" id="sidebarUser">ยินดีต้อนรับ!</div>
+      </div>
+      <div class="nav-item active" onclick="showSection('diary')" id="nav-diary">
+        <span class="nav-icon">📚</span> บันทึกทั้งหมด
+      </div>
+      <div class="nav-item" onclick="showSection('write')" id="nav-write">
+        <span class="nav-icon">✍️</span> เขียนบันทึก
+      </div>
+      <div class="nav-item" onclick="showSection('profile')" id="nav-profile">
+        <span class="nav-icon">👤</span> โปรไฟล์
+      </div>
+      <div id="nav-admin-item" class="section-hidden">
+        <div class="nav-item" onclick="showSection('admin')" id="nav-admin">
+          <span class="nav-icon">🔧</span> Admin Panel
+        </div>
+      </div>
+      <div class="sidebar-footer">
+        <button class="btn btn-secondary btn-sm" style="width:100%;" onclick="doLogout()">
+          🚪 ออกจากระบบ
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- DIARY SECTION -->
+      <div id="section-diary">
+        <div class="diary-header">
+          <h2>📚 บันทึกทั้งหมด</h2>
+          <button class="btn btn-primary btn-sm" onclick="showSection('write')">➕ เขียนบันทึกใหม่</button>
+        </div>
+        <div class="diary-tabs">
+          <button class="diary-tab-btn active" onclick="filterDiary('all',this)">ทั้งหมด</button>
+          <button class="diary-tab-btn" onclick="filterDiary('mine',this)">ของฉัน</button>
+        </div>
+        <div class="diary-list" id="diaryList">
+          <div style="text-align:center;color:var(--ink-light);padding:40px;font-family:var(--font-th);">
+            กำลังโหลดบันทึก... 📖
+          </div>
+        </div>
+      </div>
+
+      <!-- WRITE SECTION -->
+      <div id="section-write" class="section-hidden">
+        <div class="diary-header">
+          <h2>✍️ เขียนบันทึก</h2>
+        </div>
+        <div class="diary-form-wrap">
+          <h3>📝 บันทึกใหม่</h3>
+          <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchWriteTab('text',this)">✏️ ข้อความ</button>
+            <button class="tab-btn" onclick="switchWriteTab('image',this)">🖼️ รูปภาพ</button>
+            <button class="tab-btn" onclick="switchWriteTab('draw',this)">🎨 วาดรูป</button>
+          </div>
+          <!-- Text Tab -->
+          <div class="tab-panel active" id="tab-text">
+            <textarea class="diary-textarea notebook-lines" id="diaryText"
+              placeholder="เขียนความทรงจำของคุณที่นี่... 💭" rows="6"></textarea>
+          </div>
+          <!-- Image Tab -->
+          <div class="tab-panel" id="tab-image">
+            <div class="image-upload-area" onclick="document.getElementById('imageFileInput').click()">
+              <div style="font-size:2rem;margin-bottom:8px;">📸</div>
+              <div style="font-family:var(--font-th);color:var(--ink-light);">คลิกเพื่ออัปโหลดรูปภาพ</div>
+              <div style="font-size:0.8rem;color:#90a4ae;margin-top:4px;">PNG, JPG, GIF</div>
+            </div>
+            <input type="file" id="imageFileInput" accept="image/*" style="display:none" onchange="handleImageUpload(event)">
+            <img id="imagePreview" class="image-preview">
+          </div>
+          <!-- Draw Tab -->
+          <div class="tab-panel" id="tab-draw">
+            <div class="canvas-toolbar" id="canvasToolbar">
+              <!-- Tool type -->
+              <button class="tool-btn active" onclick="setDrawTool('pencil',this)" title="ดินสอ">✏️ ดินสอ</button>
+              <button class="tool-btn" onclick="setDrawTool('pen',this)" title="ปากกา">🖊️ ปากกา</button>
+              <button class="tool-btn" onclick="setDrawTool('brush',this)" title="พู่กัน">🖌️ พู่กัน</button>
+              <button class="tool-btn" onclick="setDrawTool('marker',this)" title="Marker">🖍️ Marker</button>
+              <div class="tool-separator"></div>
+              <!-- Shapes -->
+              <button class="tool-btn" onclick="setDrawTool('rect',this)" title="สี่เหลี่ยม">▭</button>
+              <button class="tool-btn" onclick="setDrawTool('circle',this)" title="วงกลม">○</button>
+              <button class="tool-btn" onclick="setDrawTool('triangle',this)" title="สามเหลี่ยม">△</button>
+              <button class="tool-btn" onclick="setDrawTool('line',this)" title="เส้นตรง">╱</button>
+              <button class="tool-btn" onclick="setDrawTool('arrow',this)" title="ลูกศร">→</button>
+              <div class="tool-separator"></div>
+              <!-- Colors -->
+              <div class="color-picker-wrap">
+                <div class="color-swatch active" style="background:#222222;" onclick="setDrawColor('#222222',this)"></div>
+                <div class="color-swatch" style="background:#2196F3;" onclick="setDrawColor('#2196F3',this)"></div>
+                <div class="color-swatch" style="background:#e53935;" onclick="setDrawColor('#e53935',this)"></div>
+                <div class="color-swatch" style="background:#43a047;" onclick="setDrawColor('#43a047',this)"></div>
+                <div class="color-swatch" style="background:#FF9800;" onclick="setDrawColor('#FF9800',this)"></div>
+                <div class="color-swatch" style="background:#9C27B0;" onclick="setDrawColor('#9C27B0',this)"></div>
+                <input type="color" class="color-input" id="colorPicker" value="#222222" onchange="setDrawColorCustom(this.value)">
+              </div>
+              <div class="tool-separator"></div>
+              <!-- Size -->
+              <label style="font-size:0.78rem;color:var(--ink-light);">ขนาด</label>
+              <input type="range" class="size-slider" id="brushSize" min="1" max="40" value="4" oninput="setBrushSize(this.value)">
+              <span id="brushSizeVal" style="font-size:0.78rem;color:var(--ink-light);">4px</span>
+              <div class="tool-separator"></div>
+              <!-- Actions -->
+              <button class="tool-btn" onclick="undoDraw()" title="Undo">↩️ Undo</button>
+              <button class="tool-btn" onclick="redoDraw()" title="Redo">↪️ Redo</button>
+              <button class="tool-btn" onclick="clearCanvas()" title="Clear">🗑️ Clear</button>
+            </div>
+            <canvas id="draw-canvas" width="600" height="350"></canvas>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;">
+            <button class="btn btn-primary" onclick="saveDiaryEntry()">💾 บันทึก</button>
+            <button class="btn btn-secondary" onclick="showSection('diary')">ยกเลิก</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFILE SECTION -->
+      <div id="section-profile" class="section-hidden">
+        <div class="diary-header"><h2>👤 โปรไฟล์ของฉัน</h2></div>
+        <div class="card profile-card">
+          <div class="profile-avatar-big" id="profileAvatar">A</div>
+          <div class="profile-info-row">
+            <span>ชื่อผู้ใช้</span><strong id="profileUsername">-</strong>
+          </div>
+          <div class="profile-info-row">
+            <span>คะแนน Quiz</span><strong id="profileScore">-</strong>
+          </div>
+          <div class="profile-info-row">
+            <span>บันทึกของฉัน</span><strong id="profileEntries">-</strong>
+          </div>
+          <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn btn-secondary btn-sm" onclick="openEditName()">✏️ แก้ไขชื่อ</button>
+            <button class="btn btn-danger btn-sm" onclick="confirmDeleteAccount()">🗑️ ลบบัญชี</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADMIN SECTION -->
+      <div id="section-admin" class="section-hidden">
+        <div class="diary-header"><h2>🔧 Admin Panel</h2></div>
+        <div class="card admin-card">
+          <div class="admin-section-title">👥 ผู้ใช้ทั้งหมด</div>
+          <div style="overflow-x:auto;">
+            <table class="data-table" id="adminUsersTable">
+              <thead><tr><th>ชื่อ</th><th>คะแนน Quiz</th><th>บันทึก</th><th>จัดการ</th></tr></thead>
+              <tbody id="adminUsersBody"></tbody>
+            </table>
+          </div>
+          <div class="admin-section-title">📚 บันทึกทั้งหมด</div>
+          <div style="overflow-x:auto;">
+            <table class="data-table" id="adminEntriesTable">
+              <thead><tr><th>ผู้เขียน</th><th>เนื้อหา</th><th>วันที่</th><th>จัดการ</th></tr></thead>
+              <tbody id="adminEntriesBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div><!-- end main-content -->
+  </div><!-- end app-layout -->
+</div><!-- end page-app -->
+
+<!-- ============================================================ -->
+<!-- MODALS -->
+<!-- ============================================================ -->
+
+<!-- Admin Login Modal -->
+<div class="modal-overlay" id="adminLoginModal">
+  <div class="modal-box" style="max-width:360px;text-align:center;">
+    <button class="modal-close" onclick="closeModal('adminLoginModal')">✕</button>
+    <div style="font-size:2rem;margin-bottom:8px;">🔐</div>
+    <div class="modal-title">เข้าสู่ระบบ Admin</div>
+    <div class="input-group" style="text-align:left;">
+      <label>รหัสผ่าน</label>
+      <input type="password" id="adminPasswordInput" placeholder="กรอกรหัสผ่าน..."
+        onkeydown="if(event.key==='Enter') verifyAdmin()">
+      <div class="error-msg" id="adminPwError" style="display:none;">รหัสผ่านไม่ถูกต้อง</div>
+    </div>
+    <button class="btn btn-primary" style="width:100%;" onclick="verifyAdmin()">เข้าสู่ระบบ</button>
+  </div>
+</div>
+
+<!-- View Entry Modal -->
+<div class="modal-overlay" id="viewEntryModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('viewEntryModal')">✕</button>
+    <div class="modal-title" id="viewEntryAuthor"></div>
+    <div id="viewEntryDate" style="color:#90a4ae;font-size:0.8rem;margin-bottom:14px;"></div>
+    <div id="viewEntryText" style="font-family:var(--font-body);line-height:1.8;color:var(--ink);white-space:pre-wrap;margin-bottom:12px;"></div>
+    <img id="viewEntryImage" class="view-image" style="display:none;">
+    <canvas id="viewEntryDrawing" class="view-drawing" style="display:none;max-width:100%;"></canvas>
+  </div>
+</div>
+
+<!-- Edit Name Modal -->
+<div class="modal-overlay" id="editNameModal">
+  <div class="modal-box" style="max-width:380px;">
+    <button class="modal-close" onclick="closeModal('editNameModal')">✕</button>
+    <div class="modal-title">✏️ แก้ไขชื่อ</div>
+    <div class="input-group">
+      <label>ชื่อใหม่</label>
+      <input type="text" id="newNameInput" placeholder="กรอกชื่อใหม่..." maxlength="30"
+        onkeydown="if(event.key==='Enter') saveNewName()">
+      <div class="error-msg" id="newNameError">ชื่อนี้มีคนใช้แล้ว</div>
+    </div>
+    <button class="btn btn-primary" style="width:100%;" onclick="saveNewName()">บันทึกชื่อใหม่</button>
+  </div>
+</div>
+
+<!-- Confirm Delete Account Modal -->
+<div class="modal-overlay" id="deleteAccountModal">
+  <div class="modal-box" style="max-width:380px;text-align:center;">
+    <button class="modal-close" onclick="closeModal('deleteAccountModal')">✕</button>
+    <div style="font-size:2.5rem;margin-bottom:12px;">⚠️</div>
+    <div class="modal-title">ลบบัญชีของคุณ?</div>
+    <p style="color:var(--ink-light);font-size:0.9rem;margin-bottom:20px;">บันทึกทั้งหมดของคุณจะถูกลบด้วย การกระทำนี้ไม่สามารถย้อนกลับได้</p>
+    <div style="display:flex;gap:10px;justify-content:center;">
+      <button class="btn btn-danger" onclick="doDeleteAccount()">ยืนยันลบบัญชี</button>
+      <button class="btn btn-secondary" onclick="closeModal('deleteAccountModal')">ยกเลิก</button>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, collection, doc, setDoc, getDoc, getDocs, query, where, deleteDoc, orderBy, onSnapshot, serverTimestamp, updateDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+// =========== FIREBASE CONFIG ===========
+const firebaseConfig = {
+  apiKey: "AIzaSyDemo_ReplaceWithYourKey",
+  authDomain: "anas-memory-book.firebaseapp.com",
+  projectId: "anas-memory-book",
+  storageBucket: "anas-memory-book.appspot.com",
+  messagingSenderId: "000000000000",
+  appId: "1:000000000000:web:0000000000000000"
+};
+
+// =========== INIT FIREBASE ===========
+let app, db;
+try {
+  app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+} catch(e) {
+  console.warn('Firebase init failed, using localStorage fallback');
+}
+
+// =========== DEVICE ID ===========
+function getDeviceID() {
+  let id = localStorage.getItem('anas_deviceID');
+  if (!id) {
+    id = 'dev_' + Math.random().toString(36).substr(2,12) + '_' + Date.now();
+    localStorage.setItem('anas_deviceID', id);
+  }
+  return id;
+}
+
+// =========== LOCAL STORAGE FALLBACK ===========
+// Used when Firebase is not configured or fails
+function localGet(key) {
+  try { return JSON.parse(localStorage.getItem(key)); } catch(e) { return null; }
+}
+function localSet(key, val) {
+  localStorage.setItem(key, JSON.stringify(val));
+}
+function localDel(key) { localStorage.removeItem(key); }
+
+// =========== STATE ===========
+window._state = {
+  deviceID: getDeviceID(),
+  username: null,
+  userId: null,
+  isAdmin: false,
+  quizAnswers: [],
+  quizScore: 0,
+  currentFilter: 'all',
+  drawTool: 'pencil',
+  drawColor: '#222222',
+  drawSize: 4,
+  canvasHistory: [],
+  canvasRedo: [],
+  isDrawing: false,
+  startX: 0, startY: 0,
+  imageDataURL: null,
+  drawDataURL: null,
+  entriesUnsub: null,
+  useLocal: false
+};
+
+// =========== QUIZ DATA ===========
+const QUIZ_QUESTIONS = [
+  { q: "ทะเล 🌊 หรือ ภูเขา ⛰️ หรือ ทั้งสอง?", opts: ["ทะเล 🌊","ภูเขา ⛰️","ทั้งสอง 🏖️⛰️"], answer: 2 },
+  { q: "อยู่บ้าน 🏠 หรือ ไปเที่ยว 🚗?", opts: ["อยู่บ้าน 🏠","ไปเที่ยว 🚗"], answer: 1 },
+  { q: "โกโก้ ☕ หรือ ชาไทย 🍵 หรือ ชาเขียว 🍃?", opts: ["โกโก้ ☕","ชาไทย 🍵","ชาเขียว 🍃"], answer: 0 },
+  { q: "ชาบู 🫕 หรือ ปิ้งย่าง 🍖?", opts: ["ชาบู 🫕","ปิ้งย่าง 🍖"], answer: 1 },
+  { q: "กินผัก 🥦 หรือ แพ้ผัก 🚫🥦?", opts: ["กินผัก 🥦","แพ้ผัก 🚫🥦"], answer: 1 },
+  { q: "ENFP 🦋 หรือ ENFJ 🌟?", opts: ["ENFP 🦋","ENFJ 🌟"], answer: 1 },
+  { q: "ดอกเดซี่ 🌼 หรือ ดอกทานตะวัน 🌻?", opts: ["ดอกเดซี่ 🌼","ดอกทานตะวัน 🌻"], answer: 1 },
+  { q: "ทำอาหาร 👨‍🍳 หรือ ซื้ออาหาร 🛵?", opts: ["ทำอาหาร 👨‍🍳","ซื้ออาหาร 🛵"], answer: 0 },
+  { q: "กลางวัน ☀️ หรือ กลางคืน 🌙?", opts: ["กลางวัน ☀️","กลางคืน 🌙"], answer: 1 },
+  { q: "คำพูด 💬 หรือ การกระทำ 🤝?", opts: ["คำพูด 💬","การกระทำ 🤝"], answer: 1 }
+];
+
+let quizIndex = 0;
+let quizAnswers = [];
+
+// =========== ADMIN PASSWORD ===========
+const ADMIN_PASSWORD = "987654321qew";
+
+// =========== HELPERS ===========
+window.showToast = function(msg, type='info', duration=2800) {
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.textContent = msg;
+  document.getElementById('toastContainer').appendChild(el);
+  setTimeout(()=>{ el.style.opacity='0'; el.style.transform='translateX(50px)'; el.style.transition='all 0.3s'; setTimeout(()=>el.remove(),300); }, duration);
+}
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function hideLoading() { document.getElementById('loadingOverlay').style.display='none'; }
+function showLoading() { document.getElementById('loadingOverlay').style.display='flex'; }
+
+window.openModal = function(id) { document.getElementById(id).classList.add('show'); }
+window.closeModal = function(id) { document.getElementById(id).classList.remove('show'); }
+
+window.showSection = function(sec) {
+  ['diary','write','profile','admin'].forEach(s=>{
+    const el = document.getElementById(`section-${s}`);
+    if(el) { el.classList.toggle('section-hidden', s!==sec); }
+    const nav = document.getElementById(`nav-${s}`);
+    if(nav) nav.classList.toggle('active', s===sec);
+  });
+  if(sec==='profile') loadProfile();
+  if(sec==='admin' && _state.isAdmin) loadAdminData();
+  if(sec==='diary') loadEntries();
+}
+
+// =========== FIREBASE OPS (with local fallback) ===========
+async function fbGetDoc(path, id) {
+  if(_state.useLocal) {
+    const all = localGet(`fb_${path}`) || {};
+    return all[id] || null;
+  }
+  try {
+    const snap = await getDoc(doc(db, path, id));
+    return snap.exists() ? { id: snap.id, ...snap.data() } : null;
+  } catch(e) { _state.useLocal = true; const all = localGet(`fb_${path}`) || {}; return all[id] || null; }
+}
+
+async function fbSetDoc(path, id, data) {
+  if(_state.useLocal) {
+    const all = localGet(`fb_${path}`) || {};
+    all[id] = { ...data, id };
+    localSet(`fb_${path}`, all);
+    return;
+  }
+  try {
+    await setDoc(doc(db, path, id), data);
+  } catch(e) {
+    _state.useLocal = true;
+    const all = localGet(`fb_${path}`) || {};
+    all[id] = { ...data, id };
+    localSet(`fb_${path}`, all);
+  }
+}
+
+async function fbUpdateDoc(path, id, data) {
+  if(_state.useLocal) {
+    const all = localGet(`fb_${path}`) || {};
+    all[id] = { ...(all[id]||{}), ...data, id };
+    localSet(`fb_${path}`, all);
+    return;
+  }
+  try {
+    await updateDoc(doc(db, path, id), data);
+  } catch(e) {
+    _state.useLocal = true;
+    const all = localGet(`fb_${path}`) || {};
+    all[id] = { ...(all[id]||{}), ...data, id };
+    localSet(`fb_${path}`, all);
+  }
+}
+
+async function fbDeleteDoc(path, id) {
+  if(_state.useLocal) {
+    const all = localGet(`fb_${path}`) || {};
+    delete all[id];
+    localSet(`fb_${path}`, all);
+    return;
+  }
+  try {
+    await deleteDoc(doc(db, path, id));
+  } catch(e) {
+    _state.useLocal = true;
+    const all = localGet(`fb_${path}`) || {};
+    delete all[id];
+    localSet(`fb_${path}`, all);
+  }
+}
+
+async function fbGetAll(path) {
+  if(_state.useLocal) {
+    const all = localGet(`fb_${path}`) || {};
+    return Object.values(all);
+  }
+  try {
+    const snap = await getDocs(collection(db, path));
+    return snap.docs.map(d=>({ id: d.id, ...d.data() }));
+  } catch(e) {
+    _state.useLocal = true;
+    const all = localGet(`fb_${path}`) || {};
+    return Object.values(all);
+  }
+}
+
+function fbListen(path, cb) {
+  if(_state.useLocal) {
+    // Simulate with polling
+    const interval = setInterval(async ()=>{ const data = await fbGetAll(path); cb(data); }, 2000);
+    cb(Object.values(localGet(`fb_${path}`) || {}));
+    return ()=>clearInterval(interval);
+  }
+  try {
+    const q2 = query(collection(db, path), orderBy('createdAt','desc'));
+    const unsub = onSnapshot(q2, snap=>{
+      const data = snap.docs.map(d=>({ id: d.id, ...d.data() }));
+      cb(data);
+    }, ()=>{
+      _state.useLocal = true;
+    });
+    return unsub;
+  } catch(e) {
+    _state.useLocal = true;
+    return ()=>{};
+  }
+}
+
+// =========== LANDING PAGE ===========
+window.goToLogin = function() {
+  const cached = localStorage.getItem('anas_userID');
+  if(cached) {
+    _state.userId = cached;
+    fbGetDoc('users', cached).then(user=>{
+      if(user) {
+        _state.username = user.username;
+        if(user.quizDone) { initApp(); }
+        else { showPage('page-quiz'); startQuiz(); }
+      } else {
+        showPage('page-login');
+        hideLoading();
+      }
+    });
+  } else {
+    showPage('page-login');
+    hideLoading();
+  }
+}
+
+// =========== LOGIN ===========
+window.doLogin = async function() {
+  const name = document.getElementById('usernameInput').value.trim();
+  document.getElementById('loginError').classList.remove('show');
+  document.getElementById('loginErrorEmpty').classList.remove('show');
+  if(!name) { document.getElementById('loginErrorEmpty').classList.add('show'); return; }
+
+  showLoading();
+  const users = await fbGetAll('users');
+  const taken = users.find(u => u.username.toLowerCase() === name.toLowerCase() && u.id !== _state.deviceID);
+  if(taken) {
+    hideLoading();
+    document.getElementById('loginError').classList.add('show');
+    return;
+  }
+
+  // Check if device already has this user
+  let existingUser = users.find(u => u.id === _state.deviceID);
+  if(!existingUser) {
+    await fbSetDoc('users', _state.deviceID, {
+      username: name,
+      deviceID: _state.deviceID,
+      quizDone: false,
+      score: 0,
+      answers: [],
+      createdAt: Date.now()
+    });
+  }
+
+  _state.userId = _state.deviceID;
+  _state.username = name;
+  localStorage.setItem('anas_userID', _state.deviceID);
+
+  const userData = await fbGetDoc('users', _state.deviceID);
+  hideLoading();
+  if(userData && userData.quizDone) { initApp(); }
+  else { showPage('page-quiz'); startQuiz(); }
+}
+
+// =========== QUIZ ===========
+function startQuiz() {
+  quizIndex = 0;
+  quizAnswers = [];
+  renderQuiz();
+}
+
+function renderQuiz() {
+  const q = QUIZ_QUESTIONS[quizIndex];
+  document.getElementById('quizQNum').textContent = `ข้อ ${quizIndex+1} / ${QUIZ_QUESTIONS.length}`;
+  document.getElementById('quizProgressBar').style.width = `${(quizIndex/QUIZ_QUESTIONS.length)*100}%`;
+  document.getElementById('quizQuestionText').textContent = q.q;
+  const opts = document.getElementById('quizOptions');
+  opts.innerHTML = '';
+  q.opts.forEach((opt,i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'quiz-option';
+    btn.textContent = opt;
+    btn.onclick = ()=> answerQuiz(i, btn, q);
+    opts.appendChild(btn);
+  });
+}
+
+function answerQuiz(chosen, btn, q) {
+  document.querySelectorAll('.quiz-option').forEach(b=>b.onclick=null);
+  const isCorrect = chosen === q.answer;
+  quizAnswers.push({ question: q.q, chosen: q.opts[chosen], correct: q.opts[q.answer], isCorrect });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if(!isCorrect) {
+    document.querySelectorAll('.quiz-option')[q.answer].classList.add('reveal');
+  }
+  setTimeout(()=>{
+    quizIndex++;
+    if(quizIndex < QUIZ_QUESTIONS.length) renderQuiz();
+    else finishQuiz();
+  }, 900);
+}
+
+async function finishQuiz() {
+  const score = quizAnswers.filter(a=>a.isCorrect).length;
+  _state.quizScore = score;
+  _state.quizAnswers = quizAnswers;
+
+  await fbUpdateDoc('users', _state.userId, {
+    quizDone: true,
+    score: score,
+    answers: quizAnswers
+  });
+
+  document.getElementById('finalScore').textContent = `${score}/10`;
+  let msg = '';
+  if(score >= 9) msg = '🌟 ว้าว! คุณรู้จัก ANAS ดีมากเลย!';
+  else if(score >= 7) msg = '😊 เยี่ยม! คุณรู้จัก ANAS ดีเลยนะ';
+  else if(score >= 5) msg = '🙂 ไม่เลว! ยังมีเรื่องให้รู้จักกันอีก';
+  else msg = '💙 ไม่เป็นไร เข้ามาคุยกันบ่อยๆ นะ!';
+  document.getElementById('scoreMsg').textContent = msg;
+
+  const reviewEl = document.getElementById('quizReviewList');
+  reviewEl.innerHTML = quizAnswers.map((a,i)=>`
+    <div style="padding:8px 12px;margin-bottom:6px;background:#f8fbff;border-radius:10px;border-left:3px solid ${a.isCorrect?'#66BB6A':'#EF9A9A'};">
+      <div style="font-family:var(--font-th);font-size:0.85rem;color:var(--ink);margin-bottom:4px;">
+        ${i+1}. ${a.question}
+      </div>
+      <div style="font-size:0.8rem;">
+        คุณตอบ: <span class="${a.isCorrect?'correct-ans':'wrong-ans'}">${a.chosen}</span>
+        ${!a.isCorrect?`| เฉลย: <span class="correct-ans">${a.correct}</span>`:''}
+      </div>
+    </div>
+  `).join('');
+
+  showPage('page-quiz-result');
+}
+
+window.goToApp = initApp;
+
+// =========== APP INIT ===========
+function initApp() {
+  document.getElementById('sidebarUser').textContent = `สวัสดี, ${_state.username} 👋`;
+  showPage('page-app');
+  showSection('diary');
+  setupEntryListener();
+}
+
+// =========== ENTRIES LISTENER ===========
+function setupEntryListener() {
+  if(_state.entriesUnsub) _state.entriesUnsub();
+  _state.entriesUnsub = fbListen('entries', entries=>{
+    _state.allEntries = entries.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+    renderDiaryList(_state.allEntries);
+  });
+}
+
+window.filterDiary = function(type, btn) {
+  _state.currentFilter = type;
+  document.querySelectorAll('.diary-tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderDiaryList(_state.allEntries||[]);
+}
+
+function renderDiaryList(entries) {
+  let filtered = entries;
+  if(_state.currentFilter === 'mine') {
+    filtered = entries.filter(e=>e.userId === _state.userId);
+  }
+  const el = document.getElementById('diaryList');
+  if(!filtered || filtered.length===0) {
+    el.innerHTML = `<div style="text-align:center;padding:50px;color:var(--ink-light);font-family:var(--font-th);">
+      <div style="font-size:3rem;margin-bottom:12px;">📭</div>
+      ยังไม่มีบันทึกเลย เป็นคนแรกที่เขียนสิ! 💙
+    </div>`;
+    return;
+  }
+  el.innerHTML = filtered.map(e=>{
+    const isOwner = e.userId === _state.userId;
+    const isAdmin = _state.isAdmin;
+    const canView = isOwner || isAdmin;
+    const initial = (e.username||'?')[0].toUpperCase();
+    const dateStr = e.createdAt ? new Date(e.createdAt).toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'}) : '';
+    const preview = e.text ? (e.text.length>40?e.text.substr(0,40)+'...':e.text) : (e.imageURL?'[รูปภาพ]':(e.drawURL?'[ภาพวาด]':'...'));
+
+    return `<div class="diary-entry-card">
+      <div class="entry-avatar">${initial}</div>
+      <div class="entry-info">
+        <div class="entry-author">${e.username||'?'} ${isOwner?'(คุณ)':''}</div>
+        <div class="entry-preview">${canView?preview:'🔒 บันทึกส่วนตัว'}</div>
+        <div class="entry-date">${dateStr}</div>
+      </div>
+      <div class="entry-actions">
+        ${canView
+          ? `<button class="btn btn-secondary btn-xs" onclick="viewEntry('${e.id}')">👁️ ดู</button>`
+          : `<span class="locked-badge">🔒 ส่วนตัว</span>`
+        }
+        ${(isOwner || isAdmin)
+          ? `<button class="btn btn-danger btn-xs" onclick="deleteEntry('${e.id}')">🗑️</button>`
+          : ''
+        }
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// =========== VIEW ENTRY ===========
+window.viewEntry = async function(id) {
+  const entries = _state.allEntries || [];
+  const e = entries.find(x=>x.id===id);
+  if(!e) return;
+
+  const isOwner = e.userId === _state.userId;
+  const isAdmin = _state.isAdmin;
+  if(!isOwner && !isAdmin) { showToast('บันทึกนี้เห็นได้เฉพาะเจ้าของและผู้ดูแลระบบ','error'); return; }
+
+  document.getElementById('viewEntryAuthor').textContent = `📖 บันทึกของ ${e.username}`;
+  document.getElementById('viewEntryDate').textContent = e.createdAt ? new Date(e.createdAt).toLocaleString('th-TH') : '';
+  document.getElementById('viewEntryText').textContent = e.text || '';
+
+  const imgEl = document.getElementById('viewEntryImage');
+  if(e.imageURL) { imgEl.src = e.imageURL; imgEl.style.display='block'; }
+  else { imgEl.style.display='none'; }
+
+  const drawEl = document.getElementById('viewEntryDrawing');
+  if(e.drawURL) {
+    drawEl.style.display='block';
+    const img = new Image();
+    img.onload = ()=>{
+      drawEl.width = img.naturalWidth || 600;
+      drawEl.height = img.naturalHeight || 350;
+      drawEl.getContext('2d').drawImage(img,0,0);
+    };
+    img.src = e.drawURL;
+  } else { drawEl.style.display='none'; }
+
+  openModal('viewEntryModal');
+}
+
+// =========== DELETE ENTRY ===========
+window.deleteEntry = async function(id) {
+  if(!confirm('ลบบันทึกนี้?')) return;
+  await fbDeleteDoc('entries', id);
+  showToast('ลบบันทึกแล้ว 🗑️','success');
+}
+
+// =========== SAVE DIARY ENTRY ===========
+window.saveDiaryEntry = async function() {
+  const text = document.getElementById('diaryText').value.trim();
+  const imageURL = _state.imageDataURL || '';
+  const drawURL = _state.drawDataURL || '';
+
+  if(!text && !imageURL && !drawURL) {
+    showToast('กรุณาเขียนข้อความหรือเพิ่มรูป/วาดรูปก่อนนะ 😊','error');
+    return;
+  }
+
+  showLoading();
+  const id = 'entry_' + Date.now() + '_' + Math.random().toString(36).substr(2,6);
+  await fbSetDoc('entries', id, {
+    id, userId: _state.userId,
+    username: _state.username,
+    text, imageURL, drawURL,
+    createdAt: Date.now()
+  });
+
+  // Reset
+  document.getElementById('diaryText').value = '';
+  _state.imageDataURL = null;
+  _state.drawDataURL = null;
+  document.getElementById('imagePreview').style.display='none';
+  clearCanvas();
+
+  hideLoading();
+  showToast('บันทึกเสร็จแล้ว! 💙','success');
+  showSection('diary');
+}
+
+// =========== IMAGE UPLOAD ===========
+window.handleImageUpload = function(e) {
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev=>{
+    _state.imageDataURL = ev.target.result;
+    const prev = document.getElementById('imagePreview');
+    prev.src = ev.target.result;
+    prev.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+// =========== CANVAS DRAWING ===========
+let canvas, ctx;
+let snapshots = [], redoStack = [];
+let shapeStart = null;
+
+function initCanvas() {
+  canvas = document.getElementById('draw-canvas');
+  ctx = canvas.getContext('2d');
+  // Fit to container
+  const wrap = canvas.parentElement;
+  canvas.width = Math.min(600, wrap.offsetWidth - 10);
+  canvas.height = 350;
+  fillCanvasWhite();
+  snapshots = [];
+  redoStack = [];
+  saveSnap();
+
+  canvas.addEventListener('pointerdown', onPD);
+  canvas.addEventListener('pointermove', onPM);
+  canvas.addEventListener('pointerup', onPU);
+  canvas.addEventListener('pointerleave', onPU);
+}
+
+function fillCanvasWhite() {
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+}
+
+function saveSnap() {
+  snapshots.push(canvas.toDataURL());
+  if(snapshots.length > 50) snapshots.shift();
+  redoStack = [];
+}
+
+function getPos(e) {
+  const r = canvas.getBoundingClientRect();
+  return { x: e.clientX - r.left, y: e.clientY - r.top };
+}
+
+function getLineWidth() {
+  const s = _state.drawTool;
+  const base = _state.drawSize;
+  if(s==='marker') return base * 4;
+  if(s==='brush') return base * 2.5;
+  if(s==='pen') return base * 1.2;
+  return base;
+}
+
+function getAlpha() {
+  const s = _state.drawTool;
+  if(s==='marker') return 0.55;
+  if(s==='pencil') return 0.75;
+  return 1;
+}
+
+function onPD(e) {
+  e.preventDefault();
+  _state.isDrawing = true;
+  const pos = getPos(e);
+  _state.startX = pos.x;
+  _state.startY = pos.y;
+
+  const shapes = ['rect','circle','triangle','line','arrow'];
+  if(shapes.includes(_state.drawTool)) {
+    shapeStart = pos;
+    return;
+  }
+
+  ctx.beginPath();
+  ctx.moveTo(pos.x, pos.y);
+  setCtxStyle();
+}
+
+function setCtxStyle() {
+  ctx.strokeStyle = _state.drawColor;
+  ctx.lineWidth = getLineWidth();
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.globalAlpha = getAlpha();
+}
+
+function onPM(e) {
+  if(!_state.isDrawing) return;
+  e.preventDefault();
+  const pos = getPos(e);
+  const shapes = ['rect','circle','triangle','line','arrow'];
+
+  if(shapes.includes(_state.drawTool) && shapeStart) {
+    // Restore snapshot to preview shape
+    if(snapshots.length > 0) {
+      const img = new Image();
+      img.onload = ()=>{
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.drawImage(img,0,0);
+        ctx.globalAlpha = 1;
+        drawShape(_state.drawTool, shapeStart, pos);
+      };
+      img.src = snapshots[snapshots.length-1];
+    }
+    return;
+  }
+
+  setCtxStyle();
+  ctx.lineTo(pos.x, pos.y);
+  ctx.stroke();
+}
+
+function onPU(e) {
+  if(!_state.isDrawing) return;
+  _state.isDrawing = false;
+  const pos = getPos(e);
+  const shapes = ['rect','circle','triangle','line','arrow'];
+
+  if(shapes.includes(_state.drawTool) && shapeStart) {
+    ctx.globalAlpha = 1;
+    drawShape(_state.drawTool, shapeStart, pos);
+    shapeStart = null;
+  }
+
+  ctx.closePath();
+  ctx.globalAlpha = 1;
+  saveSnap();
+  _state.drawDataURL = canvas.toDataURL();
+}
+
+function drawShape(tool, s, e) {
+  ctx.strokeStyle = _state.drawColor;
+  ctx.lineWidth = _state.drawSize;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.beginPath();
+
+  switch(tool) {
+    case 'rect':
+      ctx.strokeRect(s.x, s.y, e.x-s.x, e.y-s.y);
+      break;
+    case 'circle': {
+      const rx = Math.abs(e.x-s.x)/2, ry = Math.abs(e.y-s.y)/2;
+      const cx = (s.x+e.x)/2, cy = (s.y+e.y)/2;
+      ctx.ellipse(cx,cy,rx||1,ry||1,0,0,Math.PI*2);
+      ctx.stroke();
+      break;
+    }
+    case 'triangle':
+      ctx.moveTo((s.x+e.x)/2, s.y);
+      ctx.lineTo(e.x, e.y);
+      ctx.lineTo(s.x, e.y);
+      ctx.closePath();
+      ctx.stroke();
+      break;
+    case 'line':
+      ctx.moveTo(s.x,s.y); ctx.lineTo(e.x,e.y); ctx.stroke();
+      break;
+    case 'arrow': {
+      const dx=e.x-s.x, dy=e.y-s.y, len=Math.sqrt(dx*dx+dy*dy);
+      if(len<2) break;
+      const ang=Math.atan2(dy,dx), hw=14, ha=0.4;
+      ctx.moveTo(s.x,s.y); ctx.lineTo(e.x,e.y); ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(e.x,e.y);
+      ctx.lineTo(e.x-hw*Math.cos(ang-ha), e.y-hw*Math.sin(ang-ha));
+      ctx.moveTo(e.x,e.y);
+      ctx.lineTo(e.x-hw*Math.cos(ang+ha), e.y-hw*Math.sin(ang+ha));
+      ctx.stroke();
+      break;
+    }
+  }
+}
+
+window.undoDraw = function() {
+  if(snapshots.length <= 1) return;
+  redoStack.push(snapshots.pop());
+  const img = new Image();
+  img.onload = ()=>{ ctx.clearRect(0,0,canvas.width,canvas.height); ctx.drawImage(img,0,0); };
+  img.src = snapshots[snapshots.length-1];
+  _state.drawDataURL = snapshots[snapshots.length-1];
+}
+
+window.redoDraw = function() {
+  if(!redoStack.length) return;
+  const snap = redoStack.pop();
+  snapshots.push(snap);
+  const img = new Image();
+  img.onload = ()=>{ ctx.clearRect(0,0,canvas.width,canvas.height); ctx.drawImage(img,0,0); };
+  img.src = snap;
+  _state.drawDataURL = snap;
+}
+
+window.clearCanvas = function() {
+  if(!canvas) return;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  fillCanvasWhite();
+  saveSnap();
+  _state.drawDataURL = null;
+}
+
+window.setDrawTool = function(tool, btn) {
+  _state.drawTool = tool;
+  document.querySelectorAll('.tool-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+}
+
+window.setDrawColor = function(color, el) {
+  _state.drawColor = color;
+  document.getElementById('colorPicker').value = color;
+  document.querySelectorAll('.color-swatch').forEach(s=>s.classList.remove('active'));
+  if(el) el.classList.add('active');
+}
+
+window.setDrawColorCustom = function(color) {
+  _state.drawColor = color;
+  document.querySelectorAll('.color-swatch').forEach(s=>s.classList.remove('active'));
+}
+
+window.setBrushSize = function(val) {
+  _state.drawSize = parseInt(val);
+  document.getElementById('brushSizeVal').textContent = val+'px';
+}
+
+window.switchWriteTab = function(tab, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+tab).classList.add('active');
+  if(tab==='draw' && !canvas) { setTimeout(initCanvas, 100); }
+  else if(tab==='draw') {
+    // resize
+    const wrap = canvas.parentElement;
+    const newW = Math.min(600, wrap.offsetWidth - 10);
+    if(newW !== canvas.width) {
+      const dataURL = canvas.toDataURL();
+      canvas.width = newW;
+      fillCanvasWhite();
+      const img = new Image();
+      img.onload = ()=>ctx.drawImage(img,0,0);
+      img.src = dataURL;
+    }
+  }
+}
+
+// =========== PROFILE ===========
+window.loadProfile = async function() {
+  const user = await fbGetDoc('users', _state.userId);
+  const entries = (await fbGetAll('entries')).filter(e=>e.userId===_state.userId);
+  document.getElementById('profileUsername').textContent = _state.username;
+  document.getElementById('profileAvatar').textContent = _state.username[0].toUpperCase();
+  document.getElementById('profileScore').textContent = user ? `${user.score||0} / 10` : '-';
+  document.getElementById('profileEntries').textContent = entries.length + ' บันทึก';
+}
+
+window.openEditName = function() {
+  document.getElementById('newNameInput').value = _state.username;
+  document.getElementById('newNameError').style.display='none';
+  openModal('editNameModal');
+}
+
+window.saveNewName = async function() {
+  const name = document.getElementById('newNameInput').value.trim();
+  document.getElementById('newNameError').style.display='none';
+  if(!name) return;
+
+  const users = await fbGetAll('users');
+  const taken = users.find(u=>u.username.toLowerCase()===name.toLowerCase() && u.id!==_state.userId);
+  if(taken) { document.getElementById('newNameError').style.display='block'; return; }
+
+  await fbUpdateDoc('users', _state.userId, { username: name });
+  // Update entries
+  const entries = await fbGetAll('entries');
+  for(const e of entries) {
+    if(e.userId===_state.userId) {
+      await fbUpdateDoc('entries', e.id, { username: name });
+    }
+  }
+  _state.username = name;
+  document.getElementById('sidebarUser').textContent = `สวัสดี, ${name} 👋`;
+  closeModal('editNameModal');
+  showToast('เปลี่ยนชื่อเรียบร้อย! 🎉','success');
+  loadProfile();
+}
+
+window.confirmDeleteAccount = function() { openModal('deleteAccountModal'); }
+
+window.doDeleteAccount = async function() {
+  showLoading();
+  const entries = await fbGetAll('entries');
+  for(const e of entries) {
+    if(e.userId===_state.userId) await fbDeleteDoc('entries', e.id);
+  }
+  await fbDeleteDoc('users', _state.userId);
+  localStorage.removeItem('anas_userID');
+  _state.username = null; _state.userId = null; _state.isAdmin = false;
+  hideLoading();
+  closeModal('deleteAccountModal');
+  showToast('ลบบัญชีเรียบร้อย 👋','success');
+  setTimeout(()=>{ showPage('page-landing'); hideLoading(); }, 500);
+}
+
+// =========== ADMIN ===========
+window.openAdminLogin = function() {
+  if(_state.isAdmin) { showSection('admin'); showPage('page-app'); return; }
+  document.getElementById('adminPasswordInput').value='';
+  document.getElementById('adminPwError').style.display='none';
+  openModal('adminLoginModal');
+}
+
+window.verifyAdmin = function() {
+  const pw = document.getElementById('adminPasswordInput').value;
+  if(pw === ADMIN_PASSWORD) {
+    _state.isAdmin = true;
+    document.getElementById('nav-admin-item').classList.remove('section-hidden');
+    closeModal('adminLoginModal');
+    showToast('เข้าสู่ระบบ Admin แล้ว 🔧','success');
+    if(document.getElementById('page-app').classList.contains('active')) {
+      showSection('admin');
+    } else {
+      // Need to be logged in
+      if(!_state.userId) { showToast('กรุณา Login ก่อน','error'); return; }
+      showSection('admin');
+    }
+  } else {
+    document.getElementById('adminPwError').style.display='block';
+  }
+}
+
+window.loadAdminData = async function() {
+  showLoading();
+  const users = await fbGetAll('users');
+  const entries = await fbGetAll('entries');
+
+  // Users table
+  const tbody = document.getElementById('adminUsersBody');
+  tbody.innerHTML = users.map(u=>{
+    const userEntries = entries.filter(e=>e.userId===u.id).length;
+    const answersHTML = (u.answers||[]).map((a,i)=>`
+      <span style="display:block;font-size:0.75rem;">
+        ${i+1}. ${a.isCorrect?'✅':'❌'} ${a.question.substr(0,20)}... → <b>${a.chosen}</b>
+      </span>`).join('');
+    return `<tr>
+      <td>
+        <b>${u.username||'?'}</b>
+        <div style="font-size:0.75rem;color:#90a4ae;">${u.id?.substr(0,16)}...</div>
+      </td>
+      <td>
+        <b>${u.score||0}/10</b>
+        <div class="quiz-answers-detail">${answersHTML}</div>
+      </td>
+      <td>${userEntries} บันทึก</td>
+      <td>
+        <button class="btn btn-danger btn-xs" onclick="adminDeleteUser('${u.id}')">🗑️ ลบ</button>
+      </td>
+    </tr>`;
+  }).join('');
+
+  // Entries table
+  const etbody = document.getElementById('adminEntriesBody');
+  etbody.innerHTML = entries.sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)).map(e=>`<tr>
+    <td><b>${e.username||'?'}</b></td>
+    <td>
+      ${e.text?`<div style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:0.82rem;">${e.text}</div>`:''}
+      ${e.imageURL?'<span style="font-size:0.75rem;color:#1976D2;">📷 มีรูป</span>':''}
+      ${e.drawURL?'<span style="font-size:0.75rem;color:#7B1FA2;">🎨 มีภาพวาด</span>':''}
+      <button class="btn btn-secondary btn-xs" style="margin-top:4px;" onclick="viewEntry('${e.id}')">👁️ ดู</button>
+    </td>
+    <td style="font-size:0.78rem;">${e.createdAt?new Date(e.createdAt).toLocaleDateString('th-TH'):''}</td>
+    <td><button class="btn btn-danger btn-xs" onclick="deleteEntry('${e.id}')">🗑️</button></td>
+  </tr>`).join('');
+
+  hideLoading();
+}
+
+window.adminDeleteUser = async function(uid) {
+  if(!confirm('ลบผู้ใช้นี้พร้อมบันทึกทั้งหมด?')) return;
+  showLoading();
+  const entries = await fbGetAll('entries');
+  for(const e of entries) {
+    if(e.userId===uid) await fbDeleteDoc('entries',e.id);
+  }
+  await fbDeleteDoc('users',uid);
+  hideLoading();
+  showToast('ลบผู้ใช้แล้ว','success');
+  loadAdminData();
+}
+
+// =========== LOGOUT ===========
+window.doLogout = function() {
+  localStorage.removeItem('anas_userID');
+  _state.username = null; _state.userId = null; _state.isAdmin = false;
+  if(_state.entriesUnsub) _state.entriesUnsub();
+  showPage('page-landing');
+  showToast('ออกจากระบบแล้ว 👋');
+}
+
+// =========== INIT ===========
+window.loadEntries = function() {
+  if(_state.allEntries) renderDiaryList(_state.allEntries);
+}
+
+hideLoading();
+
+// Auto-check saved session
+const savedID = localStorage.getItem('anas_userID');
+if(savedID) {
+  _state.userId = savedID;
+  fbGetDoc('users', savedID).then(user=>{
+    if(user) {
+      _state.username = user.username;
+      if(user.quizDone) initApp();
+      else { showPage('page-quiz'); startQuiz(); }
+    }
+  }).catch(()=>{});
+}
+
+</script>
+</body>
+</html>
