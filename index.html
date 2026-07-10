@@ -895,7 +895,7 @@ body {
       <div class="progress-bar-wrap">
         <div class="progress-bar-fill" id="quizProgressBar" style="width:0%"></div>
       </div>
-      <div class="quiz-q-num" id="quizQNum">ข้อ 1 / 10</div>
+      <div class="quiz-q-num" id="quizQNum">ข้อ 1 / 15</div>
     </div>
     <div id="quizQuestionText" class="quiz-question"></div>
     <div class="quiz-options" id="quizOptions"></div>
@@ -908,7 +908,7 @@ body {
 <div class="page" id="page-quiz-result">
   <div class="card quiz-result-card">
     <div class="score-circle">
-      <div class="score-num" id="finalScore">0/10</div>
+      <div class="score-num" id="finalScore">0/15</div>
       <div class="score-label">คะแนน</div>
     </div>
     <h2 class="score-msg" id="scoreMsg"></h2>
@@ -1229,6 +1229,8 @@ const QUIZ_QUESTIONS = [
   { q: "กลางวัน ☀️ หรือ กลางคืน 🌙?", opts: ["กลางวัน ☀️","กลางคืน 🌙"], answer: 1 },
   { q: "คอมพิวเตอร์ 🖥️ หรือ โทรศัพท์ 📞?", opts: ["คอมพิวเตอร์ 🖥️","โทรศัพท์ 📞"], answer: 0 },
   { q: "คำพูด 💬 หรือ การกระทำ 🤝?", opts: ["การกระทำ 🤝","คำพูด 💬"], answer: 0 },
+  { q: "เดินป่า 🌳 หรือ กางเต็นท์ ⛺?", opts: ["กางเต็นท์ ⛺","เดินป่า 🌳"], answer: 1 },
+  { q: "สีฟ้า 🩵 หรือ สีขาว🌫️", opts: ["สีขาว🌫️","สีฟ้า 🩵"], answer: 1 },
 ];
 
 let quizIndex = 0;
@@ -1478,7 +1480,7 @@ async function finishQuiz() {
     answers: quizAnswers
   });
 
-  document.getElementById('finalScore').textContent = `${score}/10`;
+  document.getElementById('finalScore').textContent = `${score}/15`;
   let msg = '';
   if(score >= 9) msg = '🌟 ว้าว! คุณรู้จัก ANAS ดีมากเลย!';
   else if(score >= 7) msg = '😊 เยี่ยม! คุณรู้จัก ANAS ดีเลยนะ';
@@ -1902,7 +1904,7 @@ window.loadProfile = async function() {
   const entries = (await fbGetAll('entries')).filter(e=>e.userId===_state.userId);
   document.getElementById('profileUsername').textContent = _state.username;
   document.getElementById('profileAvatar').textContent = _state.username[0].toUpperCase();
-  document.getElementById('profileScore').textContent = user ? `${user.score||0} / 10` : '-';
+  document.getElementById('profileScore').textContent = user ? `${user.score||0} / 15` : '-';
   document.getElementById('profileEntries').textContent = entries.length + ' บันทึก';
 }
 
@@ -1999,7 +2001,7 @@ window.loadAdminData = async function() {
         <div style="font-size:0.75rem;color:#90a4ae;">${u.id?.substr(0,16)}...</div>
       </td>
       <td>
-        <b>${u.score||0}/10</b>
+        <b>${u.score||0}/15</b>
         <div class="quiz-answers-detail">${answersHTML}</div>
       </td>
       <td>${userEntries} บันทึก</td>
