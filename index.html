@@ -798,6 +798,98 @@ body {
   cursor: pointer; color: var(--ink-light); transition: all 0.2s;
 }
 .diary-tab-btn.active { background: var(--blue); border-color: var(--blue); color: white; }
+
+/* ===== AUDIO RECORDING ===== */
+.audio-panel { padding: 4px 0; }
+.audio-record-area {
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  padding: 30px 20px; background: linear-gradient(135deg,#f0f8ff,#e8f4fd);
+  border-radius: 16px; border: 2px dashed #bbdefb; min-height: 220px; justify-content: center;
+}
+.record-btn-wrap { position:relative; display:flex; align-items:center; justify-content:center; }
+.record-pulse-ring {
+  position:absolute; width:90px; height:90px; border-radius:50%;
+  background:rgba(229,57,53,0.22); animation:recordPulse 1.2s ease-out infinite; display:none;
+}
+.record-pulse-ring.nth2 { animation-delay:0.4s; background:rgba(229,57,53,0.12); }
+@keyframes recordPulse { 0%{transform:scale(0.9);opacity:1} 100%{transform:scale(1.9);opacity:0} }
+.record-main-btn {
+  width:76px; height:76px; border-radius:50%; border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; font-size:1.8rem;
+  transition:all 0.25s; position:relative; z-index:2;
+  box-shadow:0 6px 24px rgba(33,150,243,0.35);
+  background:linear-gradient(135deg,#1976D2,#42A5F5);
+}
+.record-main-btn:hover { transform:scale(1.08); }
+.record-main-btn.recording { background:linear-gradient(135deg,#c62828,#ef5350); animation:btnBreath 1.2s ease-in-out infinite; }
+@keyframes btnBreath { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
+.audio-status-row { display:flex; flex-direction:column; align-items:center; gap:6px; }
+.audio-status-text { font-family:var(--font-th); font-size:0.92rem; color:var(--ink-light); }
+.audio-status-text.rec { color:#c62828; font-weight:600; }
+.audio-timer { font-family:'Courier New',monospace; font-size:1.5rem; font-weight:700; color:var(--blue-dark); letter-spacing:3px; display:none; }
+.audio-timer.show { display:block; }
+.audio-timer.rec  { color:#c62828; }
+.waveform-bars { display:flex; align-items:center; gap:3px; height:40px; visibility:hidden; }
+.waveform-bars.show { visibility:visible; }
+.waveform-bar { width:5px; background:linear-gradient(180deg,#42A5F5,#1976D2); border-radius:3px; min-height:5px; transition:height 0.08s ease; }
+.waveform-bars.rec .waveform-bar { background:linear-gradient(180deg,#ef5350,#c62828); }
+.audio-list-wrap { width:100%; display:flex; flex-direction:column; gap:10px; max-height:260px; overflow-y:auto; }
+.audio-clip-item {
+  display:flex; align-items:center; gap:12px; background:white;
+  border:1px solid #e3f2fd; border-radius:14px; padding:12px 16px;
+  box-shadow:0 2px 8px rgba(33,150,243,0.08); animation:audioIn 0.35s ease-out;
+}
+@keyframes audioIn { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+.audio-clip-icon { font-size:1.4rem; flex-shrink:0; }
+.audio-clip-info { flex:1; min-width:0; }
+.audio-clip-name { font-family:var(--font-th); font-size:0.88rem; color:var(--blue-dark); font-weight:600; }
+.audio-clip-player { width:100%; height:34px; margin-top:6px; border-radius:8px; outline:none; }
+.audio-clip-del { width:30px; height:30px; border:none; border-radius:50%; background:#ffebee; color:#e53935; font-size:0.9rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s; flex-shrink:0; }
+.audio-clip-del:hover { background:#ffcdd2; transform:scale(1.1); }
+.audio-empty-msg { font-family:var(--font-th); font-size:0.85rem; color:#b0bec5; text-align:center; padding:10px; }
+.audio-perm-err { background:#fff3e0; border:1px solid #ffcc80; border-radius:12px; padding:14px 18px; font-family:var(--font-th); font-size:0.85rem; color:#e65100; text-align:center; display:none; }
+.audio-perm-err.show { display:block; }
+/* badge เสียงบนการ์ดบันทึก */
+.audio-badge { display:inline-flex; align-items:center; gap:4px; background:#e3f2fd; color:#1565C0; font-size:0.72rem; padding:2px 8px; border-radius:20px; font-family:var(--font-th); margin-left:6px; border:1px solid #bbdefb; }
+/* เสียงใน modal view */
+.view-audio-wrap { margin-top:14px; }
+.view-audio-title { font-family:var(--font-th); font-size:0.9rem; font-weight:600; color:var(--blue-dark); margin-bottom:10px; }
+.view-audio-item { background:#f0f8ff; border:1px solid #bbdefb; border-radius:12px; padding:12px 16px; margin-bottom:8px; }
+.view-audio-label { font-family:var(--font-th); font-size:0.83rem; color:var(--blue-dark); margin-bottom:6px; font-weight:500; }
+.view-audio-player { width:100%; height:34px; border-radius:8px; }
+
+/* ===== SAVE BUTTON DISABLED WHILE RECORDING ===== */
+#saveDiaryBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+.recording-warn {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  background: #fff3e0;
+  border: 1.5px solid #FFB74D;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-family: var(--font-th);
+  font-size: 0.88rem;
+  color: #e65100;
+  margin-bottom: 14px;
+  animation: warnPulse 1.4s ease-in-out infinite;
+}
+.recording-warn.show { display: flex; }
+@keyframes warnPulse {
+  0%,100% { border-color: #FFB74D; }
+  50%      { border-color: #e65100; box-shadow: 0 0 0 3px rgba(230,81,0,0.12); }
+}
+.warn-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #e53935; flex-shrink: 0;
+  animation: dotBlink 1s ease-in-out infinite;
+}
+@keyframes dotBlink { 0%,100%{opacity:1} 50%{opacity:0.2} }
 </style>
 </head>
 <body>
@@ -980,6 +1072,7 @@ body {
             <button class="tab-btn active" onclick="switchWriteTab('text',this)">✏️ ข้อความ</button>
             <button class="tab-btn" onclick="switchWriteTab('image',this)">🖼️ รูปภาพ</button>
             <button class="tab-btn" onclick="switchWriteTab('draw',this)">🎨 วาดรูป</button>
+            <button class="tab-btn" onclick="switchWriteTab('audio',this)">🎙️ อัดเสียง</button>
           </div>
           <!-- Text Tab -->
           <div class="tab-panel active" id="tab-text">
@@ -1035,8 +1128,49 @@ body {
             </div>
             <canvas id="draw-canvas" width="600" height="350"></canvas>
           </div>
-          <div style="display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;">
-            <button class="btn btn-primary" onclick="saveDiaryEntry()">💾 บันทึก</button>
+          <!-- Audio Tab -->
+          <div class="tab-panel audio-panel" id="tab-audio">
+            <div class="audio-perm-err" id="audioPermErr">
+              ⚠️ ไม่สามารถเข้าถึงไมโครโฟนได้<br>กรุณาอนุญาตการใช้ไมโครโฟนในเบราว์เซอร์ก่อนนะ
+            </div>
+            <div class="audio-record-area" id="audioRecordArea">
+              <div class="waveform-bars" id="waveformBars">
+                <div class="waveform-bar" style="height:10px"></div>
+                <div class="waveform-bar" style="height:18px"></div>
+                <div class="waveform-bar" style="height:28px"></div>
+                <div class="waveform-bar" style="height:14px"></div>
+                <div class="waveform-bar" style="height:22px"></div>
+                <div class="waveform-bar" style="height:32px"></div>
+                <div class="waveform-bar" style="height:18px"></div>
+                <div class="waveform-bar" style="height:12px"></div>
+                <div class="waveform-bar" style="height:26px"></div>
+                <div class="waveform-bar" style="height:20px"></div>
+                <div class="waveform-bar" style="height:8px"></div>
+                <div class="waveform-bar" style="height:16px"></div>
+              </div>
+              <div class="record-btn-wrap">
+                <div class="record-pulse-ring" id="pulseRing1"></div>
+                <div class="record-pulse-ring nth2" id="pulseRing2"></div>
+                <button class="record-main-btn" id="recordMainBtn" onclick="toggleRecording()" title="กดเพื่ออัดเสียง">🎙️</button>
+              </div>
+              <div class="audio-status-row">
+                <div class="audio-status-text" id="audioStatusText">กดปุ่มเพื่อเริ่มอัดเสียง 🎙️</div>
+                <div class="audio-timer" id="audioTimer">00:00</div>
+              </div>
+            </div>
+            <div style="margin-top:16px;">
+              <div style="font-family:var(--font-th);font-size:0.88rem;color:var(--ink-light);margin-bottom:8px;font-weight:500;">🎵 เสียงที่อัดไว้ (กดบันทึกด้านล่างเพื่อบันทึกลงระบบ)</div>
+              <div class="audio-list-wrap" id="audioListWrap">
+                <div class="audio-empty-msg" id="audioEmptyMsg">ยังไม่มีเสียง กดปุ่มด้านบนเพื่ออัดเสียง 🎙️</div>
+              </div>
+            </div>
+          </div>
+          <div class="recording-warn" id="recordingWarn">
+              <div class="warn-dot"></div>
+              กำลังอัดเสียงอยู่! กรุณากด ⏹️ หยุดพูด ก่อนจึงจะบันทึกได้
+            </div>
+            <div style="display:flex;gap:10px;margin-top:0px;flex-wrap:wrap;">
+            <button class="btn btn-primary" id="saveDiaryBtn" onclick="saveDiaryEntry()">💾 บันทึก</button>
             <button class="btn btn-secondary" onclick="showSection('diary')">ยกเลิก</button>
           </div>
         </div>
@@ -1116,6 +1250,7 @@ body {
     <div id="viewEntryText" style="font-family:var(--font-body);line-height:1.8;color:var(--ink);white-space:pre-wrap;margin-bottom:12px;"></div>
     <img id="viewEntryImage" class="view-image" style="display:none;">
     <canvas id="viewEntryDrawing" class="view-drawing" style="display:none;max-width:100%;"></canvas>
+    <div id="viewEntryAudio" class="view-audio-wrap" style="display:none;"></div>
   </div>
 </div>
 
@@ -1549,7 +1684,9 @@ function renderDiaryList(entries) {
     const canView = isOwner || isAdmin;
     const initial = (e.username||'?')[0].toUpperCase();
     const dateStr = e.createdAt ? new Date(e.createdAt).toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'}) : '';
-    const preview = e.text ? (e.text.length>40?e.text.substr(0,40)+'...':e.text) : (e.imageURL?'[รูปภาพ]':(e.drawURL?'[ภาพวาด]':'...'));
+    const hasAudio = e.audioClips && e.audioClips.length > 0;
+    const previewBase = e.text ? (e.text.length>40?e.text.substr(0,40)+'...':e.text) : (e.imageURL?'[รูปภาพ]':(e.drawURL?'[ภาพวาด]':(hasAudio?'':'...')));
+    const preview = previewBase + (hasAudio && canView ? ' <span class="audio-badge">🎙️ '+e.audioClips.length+' เสียง</span>' : '');
 
     return `<div class="diary-entry-card">
       <div class="entry-avatar">${initial}</div>
@@ -1602,6 +1739,25 @@ window.viewEntry = async function(id) {
     img.src = e.drawURL;
   } else { drawEl.style.display='none'; }
 
+  // แสดง audio clips
+  const audioWrap = document.getElementById('viewEntryAudio');
+  if(audioWrap) {
+    audioWrap.innerHTML = '';
+    if(e.audioClips && e.audioClips.length > 0) {
+      audioWrap.style.display = 'block';
+      let html = '<div class="view-audio-title">🎵 เสียงบันทึก (' + e.audioClips.length + ' ไฟล์)</div>';
+      e.audioClips.forEach((clip,i) => {
+        html += '<div class="view-audio-item">' +
+          '<div class="view-audio-label">🎙️ ' + clip.name + '</div>' +
+          '<audio class="view-audio-player" controls src="' + clip.data + '"></audio>' +
+          '</div>';
+      });
+      audioWrap.innerHTML = html;
+    } else {
+      audioWrap.style.display = 'none';
+    }
+  }
+
   openModal('viewEntryModal');
 }
 
@@ -1614,12 +1770,30 @@ window.deleteEntry = async function(id) {
 
 // =========== SAVE DIARY ENTRY ===========
 window.saveDiaryEntry = async function() {
+  // ป้องกันกรณีกำลังอัดเสียงอยู่
+  const saveBtn = document.getElementById('saveDiaryBtn');
+  if(saveBtn && saveBtn.disabled) {
+    showToast('กรุณากด ⏹️ หยุดพูด ก่อนบันทึก!','error');
+    return;
+  }
+
   const text = document.getElementById('diaryText').value.trim();
   const imageURL = _state.imageDataURL || '';
   const drawURL = _state.drawDataURL || '';
 
-  if(!text && !imageURL && !drawURL) {
-    showToast('กรุณาเขียนข้อความหรือเพิ่มรูป/วาดรูปก่อนนะ 😊','error');
+  // รวบรวม audio clips → base64
+  const audioClips = [];
+  if(window._audioClips && window._audioClips.length > 0) {
+    for(const clip of window._audioClips) {
+      const b64 = await new Promise((res,rej)=>{
+        const r = new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(clip.blob);
+      });
+      audioClips.push({ name: clip.name, duration: clip.duration, data: b64 });
+    }
+  }
+
+  if(!text && !imageURL && !drawURL && audioClips.length === 0) {
+    showToast('กรุณาเขียนข้อความ เพิ่มรูป หรืออัดเสียงก่อนนะ 😊','error');
     return;
   }
 
@@ -1629,15 +1803,24 @@ window.saveDiaryEntry = async function() {
     id, userId: _state.userId,
     username: _state.username,
     text, imageURL, drawURL,
+    audioClips,
     createdAt: Date.now()
   });
 
-  // Reset
+  // Reset ทั้งหมด
   document.getElementById('diaryText').value = '';
   _state.imageDataURL = null;
   _state.drawDataURL = null;
   document.getElementById('imagePreview').style.display='none';
   clearCanvas();
+  if(window._audioClips) {
+    window._audioClips.forEach(c=>URL.revokeObjectURL(c.url));
+    window._audioClips = [];
+    window._refreshAudioList && window._refreshAudioList();
+  }
+  // reset status text กลับค่าเริ่มต้น
+  const stEl = document.getElementById('audioStatusText');
+  if(stEl) stEl.textContent = 'กดปุ่มเพื่อเริ่มอัดเสียง 🎙️';
 
   hideLoading();
   showToast('บันทึกเสร็จแล้ว! 💙','success');
@@ -1878,13 +2061,16 @@ window.setBrushSize = function(val) {
 }
 
 window.switchWriteTab = function(tab, btn) {
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  const form = document.querySelector('.diary-form-wrap');
+  if(form) {
+    form.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    form.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  }
   btn.classList.add('active');
-  document.getElementById('tab-'+tab).classList.add('active');
+  const panel = document.getElementById('tab-'+tab);
+  if(panel) panel.classList.add('active');
   if(tab==='draw' && !canvas) { setTimeout(initCanvas, 100); }
   else if(tab==='draw') {
-    // resize
     const wrap = canvas.parentElement;
     const newW = Math.min(600, wrap.offsetWidth - 10);
     if(newW !== canvas.width) {
@@ -2070,6 +2256,157 @@ if(savedID) {
   }).catch(()=>{});
 }
 
+
+// =========== 🎙️ AUDIO RECORDING MODULE ===========
+window._audioClips = [];
+
+(function(){
+  let mediaRecorder=null, audioChunks=[], isRecording=false;
+  let timerInterval=null, elapsedSec=0;
+  let audioCtx=null, analyser=null, sourceNode=null, animFrame=null, micStream=null;
+
+  function $$(id){ return document.getElementById(id); }
+
+  // ---- กดอัด / หยุด ----
+  window.toggleRecording = async function() {
+    if(isRecording) stopRec();
+    else            await startRec();
+  };
+
+  async function startRec() {
+    try { micStream = await navigator.mediaDevices.getUserMedia({audio:true,video:false}); }
+    catch(err) {
+      const p=$$('audioPermErr'); if(p) p.classList.add('show');
+      const a=$$('audioRecordArea'); if(a) a.style.display='none';
+      return;
+    }
+    const mime = getMime();
+    try { mediaRecorder = new MediaRecorder(micStream, mime?{mimeType:mime}:{}); }
+    catch(e){ mediaRecorder = new MediaRecorder(micStream); }
+
+    audioChunks=[];
+    mediaRecorder.ondataavailable = e=>{ if(e.data&&e.data.size>0) audioChunks.push(e.data); };
+    mediaRecorder.onstop = onStop;
+    mediaRecorder.start(100);
+    isRecording=true; elapsedSec=0;
+    setupWave(micStream); setUI(true); startTimer();
+  }
+
+  function stopRec() {
+    if(mediaRecorder&&mediaRecorder.state!=='inactive') mediaRecorder.stop();
+    if(micStream) micStream.getTracks().forEach(t=>t.stop());
+    isRecording=false; stopTimer(); stopWave(); setUI(false);
+  }
+
+  function onStop() {
+    const mime = mediaRecorder.mimeType||'audio/webm';
+    const blob = new Blob(audioChunks,{type:mime});
+    const url  = URL.createObjectURL(blob);
+    const dur  = fmt(elapsedSec);
+    window._audioClips.push({ url, duration:dur, name:'เสียง '+(window._audioClips.length+1)+' ('+dur+')', blob });
+    refreshList();
+  }
+
+  // ---- Waveform ----
+  function setupWave(stream) {
+    try {
+      audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+      analyser = audioCtx.createAnalyser(); analyser.fftSize=64;
+      sourceNode = audioCtx.createMediaStreamSource(stream);
+      sourceNode.connect(analyser); drawWave();
+    }catch(e){}
+  }
+  function stopWave() {
+    if(animFrame) cancelAnimationFrame(animFrame);
+    if(sourceNode) try{sourceNode.disconnect();}catch(e){}
+    if(audioCtx)   try{audioCtx.close();}catch(e){}
+    sourceNode=analyser=audioCtx=null;
+    const bars=$$('waveformBars');
+    if(bars){ bars.classList.remove('show','rec'); bars.querySelectorAll('.waveform-bar').forEach(b=>b.style.height='10px'); }
+  }
+  function drawWave() {
+    if(!analyser) return;
+    const bars=$$('waveformBars'), els=bars?bars.querySelectorAll('.waveform-bar'):[];
+    const d=new Uint8Array(analyser.frequencyBinCount);
+    bars.classList.add('show','rec');
+    function lp(){
+      if(!isRecording) return;
+      analyser.getByteFrequencyData(d);
+      els.forEach((b,i)=>{ const x=Math.floor(i*d.length/els.length); b.style.height=Math.max(5,Math.min(36,d[x]/255*36))+'px'; });
+      animFrame=requestAnimationFrame(lp);
+    } lp();
+  }
+
+  // ---- Timer ----
+  function startTimer() {
+    const t=$$('audioTimer'); if(t) t.classList.add('show','rec');
+    timerInterval=setInterval(()=>{
+      elapsedSec++;
+      const t2=$$('audioTimer'); if(t2) t2.textContent=fmt(elapsedSec);
+      if(elapsedSec>=600) stopRec();
+    },1000);
+  }
+  function stopTimer() {
+    clearInterval(timerInterval);
+    const t=$$('audioTimer'); if(t) t.classList.remove('rec','show');
+  }
+  function fmt(s){ return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0'); }
+
+  // ---- UI ----
+  function setUI(rec) {
+    const btn=$$('recordMainBtn'), st=$$('audioStatusText'), p1=$$('pulseRing1'), p2=$$('pulseRing2');
+    const saveBtn=$$('saveDiaryBtn'), warn=$$('recordingWarn');
+    if(!btn) return;
+    if(rec) {
+      // กำลังอัด → ปิดปุ่มบันทึก + แสดง warning
+      btn.classList.add('recording'); btn.textContent='⏹️'; btn.title='กดเพื่อหยุดอัด';
+      if(st){st.textContent='🔴 กำลังอัดเสียง...'; st.classList.add('rec');}
+      if(p1) p1.style.display='block'; if(p2) p2.style.display='block';
+      if(saveBtn){ saveBtn.disabled=true; }
+      if(warn){ warn.classList.add('show'); }
+    } else {
+      // หยุดอัดแล้ว → เปิดปุ่มบันทึก + ซ่อน warning
+      btn.classList.remove('recording'); btn.textContent='🎙️'; btn.title='กดเพื่ออัดเสียง';
+      if(st){st.textContent='✅ บันทึกเสียงแล้ว กดเพื่ออัดเพิ่ม หรือกด 💾 บันทึก'; st.classList.remove('rec');}
+      if(p1) p1.style.display='none'; if(p2) p2.style.display='none';
+      if(saveBtn){ saveBtn.disabled=false; }
+      if(warn){ warn.classList.remove('show'); }
+    }
+  }
+
+  // ---- Render list ----
+  function refreshList() {
+    const wrap=$$('audioListWrap'), empty=$$('audioEmptyMsg');
+    if(!wrap) return;
+    wrap.querySelectorAll('.audio-clip-item').forEach(el=>el.remove());
+    if(!window._audioClips.length){ if(empty) empty.style.display='block'; return; }
+    if(empty) empty.style.display='none';
+    window._audioClips.forEach((clip,idx)=>{
+      const item=document.createElement('div'); item.className='audio-clip-item';
+      item.innerHTML=
+        '<div class="audio-clip-icon">🎵</div>'+
+        '<div class="audio-clip-info">'+
+          '<div class="audio-clip-name">'+clip.name+'</div>'+
+          '<audio class="audio-clip-player" controls src="'+clip.url+'"></audio>'+
+        '</div>'+
+        '<button class="audio-clip-del" onclick="deleteClip('+idx+')" title="ลบ">🗑️</button>';
+      wrap.appendChild(item);
+    });
+  }
+  window._refreshAudioList = refreshList;
+
+  window.deleteClip = function(idx){
+    URL.revokeObjectURL(window._audioClips[idx].url);
+    window._audioClips.splice(idx,1);
+    refreshList();
+  };
+
+  function getMime(){
+    const types=['audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus','audio/ogg','audio/mp4'];
+    for(const t of types) if(typeof MediaRecorder!=='undefined'&&MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t)) return t;
+    return '';
+  }
+})();
 </script>
 </body>
 </html>
